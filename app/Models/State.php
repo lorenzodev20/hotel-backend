@@ -22,4 +22,9 @@ class State extends Model
     {
         return $this->belongsTo(Country::class);
     }
+
+    public function scopeByCountry($query, int $country)
+    {
+        return $query->where('country_id', $country);
+    }
 }

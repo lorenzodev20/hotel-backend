@@ -1,0 +1,15 @@
+{
+    "ESTÁNDAR": [
+        "SENCILLA",
+        "DOBLE"
+    ],
+    "JUNIOR": [
+        "TRIPLE",
+        "CUÁDRUPLE"
+    ],
+    "SUITE": [
+        "SENCILLA",
+        "DOBLE",
+        "TRIPLE"
+    ]
+}

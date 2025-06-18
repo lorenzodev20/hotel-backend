@@ -21,18 +21,28 @@ class HotelAvailability extends Model
         "quantity" => "integer"
     ];
 
-    public function roomType(): HasOne
+    public function roomType(): BelongsTo
     {
-        return $this->hasOne(RoomType::class, 'room_type_id');
+        return $this->belongsTo(RoomType::class);
     }
 
-    public function accommodationType(): HasOne
+    public function accommodationType(): BelongsTo
     {
-        return $this->hasOne(AccommodationType::class, 'accommodation_type_id');
+        return $this->belongsTo(AccommodationType::class);
     }
 
     public function hotel(): BelongsTo
     {
         return $this->belongsTo(Hotel::class, 'hotel_id');
+    }
+
+    public function getRoomTypeName(): ?string
+    {
+        return $this->roomType?->name;
+    }
+
+    public function getAccommodationTypeName(): ?string
+    {
+        return $this->AccommodationType?->name;
     }
 }

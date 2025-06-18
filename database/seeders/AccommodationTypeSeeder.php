@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\AccommodationType;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
@@ -30,12 +31,9 @@ class AccommodationTypeSeeder extends Seeder
             $header = array_shift($lines);
 
             foreach ($lines as $line) {
-                $roomType = trim($line[0]);
-
-                DB::table('accommodation_types')->insert([
-                    'name' => $roomType,
-                    'created_at' => now(),
-                    'updated_at' => now(),
+                $name = trim($line[0]);
+                AccommodationType::firstOrCreate([
+                    "name" => $name
                 ]);
             }
 

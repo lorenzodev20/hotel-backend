@@ -2,15 +2,14 @@
 
 namespace App\Models;
 
-use App\Models\HotelAvailability;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
-class RoomType extends Model
+class AccommodationType extends Model
 {
-    /** @use HasFactory<\Database\Factories\RoomTypeFactory> */
+    /** @use HasFactory<\Database\Factories\AccommodationTypeFactory> */
     use HasFactory, SoftDeletes;
 
     protected $fillable = ['name'];
@@ -21,7 +20,7 @@ class RoomType extends Model
 
     public function hotelAvailability(): HasMany
     {
-        return $this->hasMany(HotelAvailability::class, 'room_type_id');
+        return $this->hasMany(HotelAvailability::class, 'accommodation_type_id');
     }
 
     public function roomRules(): HasMany
