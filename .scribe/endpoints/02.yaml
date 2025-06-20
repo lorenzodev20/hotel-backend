@@ -1,0 +1,513 @@
+name: Hotel
+description: 'Gestión de la información de un Hotel'
+endpoints:
+  -
+    httpMethods:
+      - GET
+    uri: api/v1/hotel
+    metadata:
+      groupName: Hotel
+      groupDescription: 'Gestión de la información de un Hotel'
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Obtener un listado de hoteles.'
+      description: 'Muestra una lista paginada de todos los hoteles disponibles.'
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters:
+      page:
+        name: page
+        description: 'El número de página para la paginación.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      per_page:
+        name: per_page
+        description: 'El número de elementos por página.'
+        required: true
+        example: 15
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanQueryParameters:
+      page: 1
+      per_page: 15
+    bodyParameters:
+      page:
+        name: page
+        description: ''
+        required: true
+        example: 16
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      perPage:
+        name: perPage
+        description: ''
+        required: true
+        example: 16
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanBodyParameters:
+      page: 16
+      perPage: 16
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+      -
+        status: 500
+        content: '{"message":"Error interno del servidor."}'
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/v1/hotel
+    metadata:
+      groupName: Hotel
+      groupDescription: 'Gestión de la información de un Hotel'
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Crear un nuevo hotel.'
+      description: 'Permite crear un nuevo registro de hotel con los datos proporcionados.'
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      name:
+        name: name
+        description: 'El nombre del hotel.'
+        required: true
+        example: 'Hotel Test'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      address:
+        name: address
+        description: 'La dirección del hotel.'
+        required: true
+        example: 'CALLE 23 58-25'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      tax_id:
+        name: tax_id
+        description: 'Número de NIT del hotel.'
+        required: true
+        example: 700562369-7
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      quantity_rooms:
+        name: quantity_rooms
+        description: 'La cantidad de habitaciones disponibles. Mínimo: 1.'
+        required: true
+        example: 50
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      city_id:
+        name: city_id
+        description: 'Identificador numérico asociado al hotel.'
+        required: true
+        example: 167
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanBodyParameters:
+      name: 'Hotel Test'
+      address: 'CALLE 23 58-25'
+      tax_id: 700562369-7
+      quantity_rooms: 50
+      city_id: 167
+    fileParameters: []
+    responses:
+      -
+        status: 422
+        content: '{"message":"Los datos proporcionados no son v\u00e1lidos.","errors":{"email":["El campo email ya ha sido tomado."]}}'
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 500
+        content: '{"message":"Error interno del servidor."}'
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/v1/hotel/{id}'
+    metadata:
+      groupName: Hotel
+      groupDescription: 'Gestión de la información de un Hotel'
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Mostrar un hotel específico.'
+      description: 'Obtiene los detalles de un hotel por su ID.'
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the hotel.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      hotel:
+        name: hotel
+        description: 'El ID del hotel a mostrar.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      id: 1
+      hotel: 1
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      name:
+        name: name
+        description: 'El nombre del hotel.'
+        required: true
+        example: 'Hotel Test'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      address:
+        name: address
+        description: 'La dirección del hotel.'
+        required: true
+        example: 'CALLE 23 58-25'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      tax_id:
+        name: tax_id
+        description: 'Número de NIT del hotel.'
+        required: true
+        example: 700562369-7
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      quantity_rooms:
+        name: quantity_rooms
+        description: 'La cantidad de habitaciones disponibles. Mínimo: 1.'
+        required: true
+        example: 50
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      city_id:
+        name: city_id
+        description: 'Identificador numérico asociado al hotel.'
+        required: true
+        example: 167
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanBodyParameters:
+      name: 'Hotel Test'
+      address: 'CALLE 23 58-25'
+      tax_id: 700562369-7
+      quantity_rooms: 50
+      city_id: 167
+    fileParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+        custom: []
+      -
+        status: 404
+        content: '{"message":"Hotel no encontrado."}'
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 500
+        content: '{"message":"Error interno del servidor."}'
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - PUT
+      - PATCH
+    uri: 'api/v1/hotel/{id}'
+    metadata:
+      groupName: Hotel
+      groupDescription: 'Gestión de la información de un Hotel'
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Actualizar un hotel existente.'
+      description: 'Modifica la información de un hotel. Valida la cantidad de habitaciones para evitar overbooking.'
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the hotel.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      hotel:
+        name: hotel
+        description: 'El ID del hotel a actualizar.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      id: 1
+      hotel: 1
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      name:
+        name: name
+        description: 'Must not be greater than 255 characters.'
+        required: true
+        example: b
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      address:
+        name: address
+        description: 'Must not be greater than 255 characters.'
+        required: true
+        example: 'n'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      tax_id:
+        name: tax_id
+        description: 'Must not be greater than 125 characters.'
+        required: true
+        example: g
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      quantity_rooms:
+        name: quantity_rooms
+        description: 'Must be at least 0.'
+        required: true
+        example: 12
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      city_id:
+        name: city_id
+        description: 'The <code>id</code> of an existing record in the cities table.'
+        required: true
+        example: 16
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanBodyParameters:
+      name: b
+      address: 'n'
+      tax_id: g
+      quantity_rooms: 12
+      city_id: 16
+    fileParameters: []
+    responses:
+      -
+        status: 404
+        content: '{"message":"Hotel no encontrado."}'
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 422
+        content: '{"message":"No puede asignar una cantidad menor ya que las habitaciones est\u00e1n asignadas"}'
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 500
+        content: '{"message":"Error interno del servidor."}'
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - DELETE
+    uri: 'api/v1/hotel/{id}'
+    metadata:
+      groupName: Hotel
+      groupDescription: 'Gestión de la información de un Hotel'
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Eliminar un hotel.'
+      description: 'Elimina un hotel y sus disponibilidades asociadas.'
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the hotel.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      hotel:
+        name: hotel
+        description: 'El ID del hotel a eliminar.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      id: 1
+      hotel: 1
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: '{"message":"Eliminado"}'
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 200
+        content: '{"message":"Hotel no encontrado."}'
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 500
+        content: '{"message":"Error interno del servidor."}'
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []

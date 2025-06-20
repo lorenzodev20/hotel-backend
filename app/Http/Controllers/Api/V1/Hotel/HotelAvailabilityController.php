@@ -19,7 +19,13 @@ use App\Http\Requests\Api\V1\Hotel\StoreAvailabilityRequest;
 use App\Http\Requests\Api\V1\Hotel\UpdateAvailabilityRequest;
 use App\Http\Resources\Api\V1\Hotel\HotelAvailabilityCollection;
 use App\Http\Resources\Api\V1\Hotel\HotelAvailabilityResource;
+use Knuckles\Scribe\Attributes\Group;
+use Knuckles\Scribe\Attributes\Header;
+use Knuckles\Scribe\Attributes\QueryParam;
+use Knuckles\Scribe\Attributes\Response as AttributesResponse;
 
+#[Group("Disponibilidad del Hotel", "Gestión de la información de la disponibilidad del hotel")]
+#[Header("Content-Type", "application/json")]
 class HotelAvailabilityController extends Controller
 {
     use LogErrors, ApiResponseTrait;
@@ -32,8 +38,15 @@ class HotelAvailabilityController extends Controller
     ) {}
 
     /**
-     * Display a listing of the resource.
+     * Obtener un listado de la disponibilidad por Hotel
+     *
+     * Muestra una lista paginada de todos los hoteles disponibles.
      */
+    #[QueryParam('hotelId', 'int', 'El ID del hotel sobre la que muestra la disponibilidad.', example: 1)]
+    #[QueryParam('page', 'int', 'El número de página para la paginación.', example: 1)]
+    #[QueryParam('per_page', 'int', 'El número de elementos por página.', example: 15)]
+    // #[AttributesResponse('storage/app/public/scribe/responses/hotel_index.json', Response::HTTP_OK)]
+    #[AttributesResponse(['message' => 'Error interno del servidor.'], Response::HTTP_INTERNAL_SERVER_ERROR)]
     public function index(HotelAvailabilityByHotelRequest $request)
     {
         try {
@@ -51,7 +64,7 @@ class HotelAvailabilityController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Crear un registro de disponibilidad por Hotel
      */
     public function store(StoreAvailabilityRequest $request)
     {
