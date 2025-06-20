@@ -20,10 +20,13 @@ class HotelResource extends JsonResource
         return [
             "id" => $this->id,
             "name" => $this->name,
-            "address" => $this->address.','.$this->city?->withStateAndCountry(),
+            "address" => $this->address,
             "tax_id" => $this->tax_id,
             "total_rooms" => $this->quantity_rooms,
-            "available_rooms" => $this->quantityRoomsAvailable()
+            "available_rooms" => $this->quantityRoomsAvailable(),
+            "full_address" => $this->address.','.$this->city?->withStateAndCountry(),
+            "city_id" => $this->city_id,
+            "state_id" => $this->city?->state?->id
         ];
     }
 }

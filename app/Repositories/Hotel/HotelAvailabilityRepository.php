@@ -45,12 +45,20 @@ class HotelAvailabilityRepository extends BaseRepository
             return $this->model->where('room_type_id', $roomType)
                 ->where('accommodation_type_id', $accommodationType)
                 ->where('hotel_id', $hotel)
-                ->where('id','!=',$configId)
+                ->where('id', '!=', $configId)
                 ->exists();
         }
         return $this->model->where('room_type_id', $roomType)
             ->where('accommodation_type_id', $accommodationType)
             ->where('hotel_id', $hotel)
             ->exists();
+    }
+
+    public function getByHotelWithPagination(int $hotel, int $page = 1, int $perPage = 10): \Illuminate\Pagination\LengthAwarePaginator
+    {
+        return $this->model->where('hotel_id', $hotel)->with($this->relations)->orderByDesc('id')->paginate(
+            perPage: $perPage,
+            page: $page
+        );
     }
 }

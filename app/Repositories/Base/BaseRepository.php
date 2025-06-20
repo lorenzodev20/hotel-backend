@@ -18,7 +18,7 @@ class BaseRepository
      * @var array
      * Definition in child model, example: const RELATIONS = ['cars.tickets',...]
      */
-    private array $relations;
+    protected array $relations;
 
 
     /**

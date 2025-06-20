@@ -14,8 +14,10 @@ use Symfony\Component\HttpFoundation\Response;
 use App\Repositories\Catalog\RoomRuleRepository;
 use App\Repositories\Hotel\HotelAvailabilityRepository;
 use App\Exceptions\RoomConfigurationDuplicatedException;
+use App\Http\Requests\Api\V1\Hotel\HotelAvailabilityByHotelRequest;
 use App\Http\Requests\Api\V1\Hotel\StoreAvailabilityRequest;
 use App\Http\Requests\Api\V1\Hotel\UpdateAvailabilityRequest;
+use App\Http\Resources\Api\V1\Hotel\HotelAvailabilityCollection;
 use App\Http\Resources\Api\V1\Hotel\HotelAvailabilityResource;
 
 class HotelAvailabilityController extends Controller
@@ -32,9 +34,20 @@ class HotelAvailabilityController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(HotelAvailabilityByHotelRequest $request)
     {
-        //
+        try {
+            $query = $this->repository->getByHotelWithPagination(
+                hotel: $request->getHotelId(),
+                page: $request->getPage(),
+                perPage: $request->getPerPage()
+            );
+
+            return new HotelAvailabilityCollection($query);
+        } catch (\Throwable $th) {
+            $this->printLog($th);
+            return $this->responseErrorByException($th);
+        }
     }
 
     /**

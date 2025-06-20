@@ -35,8 +35,9 @@ class AuthController extends Controller
 
 
             return $this->responseWithoutData([
+                'message' => 'Success',
+                'user' => new UserResource($user),
                 'token' => $user->createToken($request->email)->plainTextToken,
-                'message' => 'Success'
             ], Response::HTTP_OK);
         } catch (\Throwable $th) {
             $this->printLog($th);
